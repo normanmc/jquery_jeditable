@@ -224,6 +224,7 @@
                           window.clearTimeout(t);
                           input_content = result;
                           input.disabled = false;
+                          content.apply(form, [input_content, settings, self]);
                        }
                     });
                 } else if (settings.data) {
@@ -234,7 +235,10 @@
                 } else {
                     input_content = self.revert; 
                 }
-                content.apply(form, [input_content, settings, self]);
+                
+                if (!settings.loadurl) {
+		    content.apply(form, [input_content, settings, self]);
+                }
 
                 input.attr('name', settings.name);
         
